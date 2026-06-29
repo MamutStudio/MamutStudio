@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mamut Studio – Weby pre firmy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --night:   #0A1628;
+      --deep:    #0D2147;
+      --mid:     #1A3A6B;
+      --accent:  #3A6FD8;
+      --ice:     #E8F0FF;
+      --white:   #FFFFFF;
+      --gray:    #8A9BBE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--night);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 72px;
+      background: rgba(10,22,40,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(58,111,216,0.15);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-box {
+      width: 42px; height: 42px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--white);
+      letter-spacing: -1px;
+    }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 9px 22px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: #2f5bbf !important;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(58,111,216,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(26,58,107,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(58,111,216,0.12);
+      border: 1px solid rgba(58,111,216,0.3);
+      color: #7AAAF0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: #7AAAF0;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: #2f5bbf;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* floating shapes */
+    .hero-shapes {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      opacity: 0.7;
+    }
+
+    .shape-card {
+      width: 140px; height: 100px;
+      background: rgba(13,33,71,0.8);
+      border: 1px solid rgba(58,111,216,0.25);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .shape-card:nth-child(2) { animation-delay: 1s; margin-top: 24px; }
+    .shape-card:nth-child(3) { animation-delay: 2s; }
+    .shape-card:nth-child(4) { animation-delay: 0.5s; margin-top: 24px; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .shape-inner {
+      text-align: center;
+    }
+
+    .shape-icon { font-size: 28px; margin-bottom: 4px; }
+    .shape-label { font-size: 11px; color: var(--gray); font-weight: 500; }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 5%; }
+
+    .section-label {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(30px, 4vw, 50px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--gray);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio {
+      background: var(--deep);
+      clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%);
+      padding: 140px 5%;
+    }
+
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .portfolio-card {
+      background: var(--night);
+      border: 1px solid rgba(58,111,216,0.15);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(58,111,216,0.5);
+    }
+
+    .portfolio-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: var(--mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-thumb-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .portfolio-thumb-placeholder svg {
+      width: 48px; height: 48px;
+      stroke: rgba(255,255,255,0.2);
+    }
+
+    .portfolio-thumb-placeholder span {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* unique bg per card */
+    .portfolio-card:nth-child(1) .portfolio-thumb { background: linear-gradient(135deg, #0d2147 0%, #1a3a6b 100%); }
+    .portfolio-card:nth-child(2) .portfolio-thumb { background: linear-gradient(135deg, #0f1e3a 0%, #162d56 100%); }
+    .portfolio-card:nth-child(3) .portfolio-thumb { background: linear-gradient(135deg, #091629 0%, #132033 100%); }
+
+    .portfolio-info {
+      padding: 20px 22px;
+    }
+
+    .portfolio-tag {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .portfolio-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .portfolio-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── PRICING ── */
+    #cennik {
+      padding: 100px 5%;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .pricing-header .section-sub {
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--deep);
+      border: 1px solid rgba(58,111,216,0.15);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(145deg, #0D2147 0%, #1A3A6B 100%);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .pricing-tier {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .pricing-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .pricing-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+
+    .pricing-from {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .pricing-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .pricing-currency {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gray);
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--ice);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-features li::before {
+      content: '';
+      display: block;
+      width: 16px; height: 16px;
+      min-width: 16px;
+      background: rgba(58,111,216,0.2);
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath stroke='%233A6FD8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none' d='M3 8l3 3 5-6'/%3E%3C/svg%3E");
+    }
+
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .pricing-cta-ghost {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+    }
+
+    .pricing-cta-ghost:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .pricing-cta-solid {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .pricing-cta-solid:hover {
+      background: #2f5bbf;
+    }
+
+    .pricing-note {
+      text-align: center;
+      margin-top: 36px;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    /* ── CONTACT ── */
+    #kontakt {
+      background: var(--deep);
+      clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 100%);
+      padding: 140px 5% 100px;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-info {
+      padding-top: 8px;
+    }
+
+    .contact-links {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--white);
+      transition: color 0.2s;
+    }
+
+    .contact-link-item:hover { color: #7AAAF0; }
+
+    .contact-link-icon {
+      width: 44px; height: 44px;
+      background: rgba(58,111,216,0.12);
+      border: 1px solid rgba(58,111,216,0.25);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-link-icon svg { width: 20px; height: 20px; }
+
+    .contact-link-label {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 2px;
+    }
+
+    .contact-link-value {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .contact-form {
+      background: rgba(10,22,40,0.6);
+      border: 1px solid rgba(58,111,216,0.18);
+      border-radius: 20px;
+      padding: 40px 36px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(58,111,216,0.2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
+    }
+
+    .form-submit:hover {
+      background: #2f5bbf;
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--night);
+      border-top: 1px solid rgba(58,111,216,0.12);
+      padding: 60px 5% 40px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-brand .nav-logo-box {
+      width: 48px; height: 48px;
+      font-size: 20px;
+    }
+
+    .footer-brand .nav-logo-text {
+      font-size: 20px;
+    }
+
+    .footer-tagline {
+      color: var(--gray);
+      font-size: 14px;
+      margin-top: 12px;
+      max-width: 240px;
+      line-height: 1.6;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      color: var(--gray);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .social-link:hover {
+      background: rgba(58,111,216,0.15);
+      border-color: rgba(58,111,216,0.4);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .social-link svg { width: 20px; height: 20px; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: rgba(10,22,40,0.97);
+        padding: 24px 5%;
+        gap: 24px;
+        border-bottom: 1px solid rgba(58,111,216,0.15);
+      }
+      .hero-shapes { display: none; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    @media (max-width: 600px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-ghost { text-align: center; }
+    }
+
+    /* toast */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: var(--accent);
+      color: var(--white);
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(.34,1.56,.64,1);
+      z-index: 999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-box">M</div>
+    <span class="nav-logo-text">Mamut Studio</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#cennik">Cenník</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="nav-cta">Začnime projekt</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="uvod">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Webdesign štúdio zo Slovenska</div>
+    <h1>Weby, ktoré<br>predávajú<br><em>za vás.</em></h1>
+    <p class="hero-sub">
+      Vytvárame moderné, rýchle a premyslené webové stránky pre slovenské firmy.
+      Žiadne šablóny – každý projekt je unikátny.
+    </p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Napísať nám</a>
+      <a href="#portfolio" class="btn-ghost">Zobraziť práce</a>
+    </div>
+  </div>
+
+  <div class="hero-shapes" aria-hidden="true">
+    <div class="shape-card">
+      <div class="shape-inner">
+        <div class="shape-icon">⚡</div>
+        <div class="shape-label">Rýchly web</div>
+      </div>
+    </div>
+    <div class="shape-card">
+      <div class="shape-inner">
+        <div class="shape-icon">📱</div>
+        <div class="shape-label">Mobilný dizajn</div>
+      </div>
+    </div>
+    <div class="shape-card">
+      <div class="shape-inner">
+        <div class="shape-icon">🎨</div>
+        <div class="shape-label">Vlastný dizajn</div>
+      </div>
+    </div>
+    <div class="shape-card">
+      <div class="shape-inner">
+        <div class="shape-icon">🔍</div>
+        <div class="shape-label">SEO ready</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header">
+    <div>
+      <span class="section-label">Naša práca</span>
+      <h2 class="section-title">Portfólio projektov</h2>
+      <p class="section-sub">Ukážka webov, ktoré sme navrhli a spustili pre naše klientov.</p>
+    </div>
+  </div>
+
+  <div class="portfolio-grid">
+    <!-- Card 1 -->
+    <div class="portfolio-card">
+      <div class="portfolio-thumb">
+        <div class="portfolio-thumb-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="10" width="36" height="28" rx="3" stroke-width="2"/>
+            <path d="M6 16h36" stroke-width="2"/>
+            <circle cx="10" cy="13" r="1.5" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="15" cy="13" r="1.5" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+          <span>Váš projekt tu</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-tag">E-shop</div>
+        <div class="portfolio-name">Projekt 01</div>
+        <div class="portfolio-desc">Miesto pre vašu budúcu spoluprácu s Mamut Studio.</div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="portfolio-card">
+      <div class="portfolio-thumb">
+        <div class="portfolio-thumb-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="10" width="36" height="28" rx="3" stroke-width="2"/>
+            <path d="M6 16h36" stroke-width="2"/>
+            <circle cx="10" cy="13" r="1.5" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="15" cy="13" r="1.5" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+          <span>Váš projekt tu</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-tag">Firemná stránka</div>
+        <div class="portfolio-name">Projekt 02</div>
+        <div class="portfolio-desc">Každý projekt je pre nás príbeh, ktorý chceme dobre vyrozprávať.</div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="portfolio-card">
+      <div class="portfolio-thumb">
+        <div class="portfolio-thumb-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="10" width="36" height="28" rx="3" stroke-width="2"/>
+            <path d="M6 16h36" stroke-width="2"/>
+            <circle cx="10" cy="13" r="1.5" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="15" cy="13" r="1.5" fill="rgba(255,255,255,0.2)"/>
+          </svg>
+          <span>Váš projekt tu</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-tag">Landing page</div>
+        <div class="portfolio-name">Projekt 03</div>
+        <div class="portfolio-desc">Napíšte nám – možno sa práve váš projekt objaví tu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENNÍK -->
+<section id="cennik">
+  <div class="pricing-header">
+    <span class="section-label">Cenník</span>
+    <h2 class="section-title">Transparentné ceny</h2>
+    <p class="section-sub">Cena závisí od rozsahu a náročnosti projektu. Vždy viete, čo dostanete.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- Basic -->
+    <div class="pricing-card">
+      <div class="pricing-tier">Štart</div>
+      <div class="pricing-name">Basic web</div>
+      <div class="pricing-desc">Ideálne pre živnostníkov a malé firmy, ktoré potrebujú svoju prvú stránku.</div>
+      <div class="pricing-price">
+        <span class="pricing-from">od</span>
+        <span class="pricing-amount">75</span>
+        <span class="pricing-currency">€</span>
+      </div>
+      <ul class="pricing-features">
+        <li>1–3 podstránky</li>
+        <li>Mobilný dizajn</li>
+        <li>Kontaktný formulár</li>
+        <li>Základné SEO</li>
+      </ul>
+      <a href="#kontakt" class="pricing-cta pricing-cta-ghost">Mám záujem</a>
+    </div>
+
+    <!-- Pro (featured) -->
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Najpopulárnejšie</div>
+      <div class="pricing-tier">Profesionál</div>
+      <div class="pricing-name">Firemný web</div>
+      <div class="pricing-desc">Pre firmy, ktoré chcú pôsobiť profesionálne a získavať klientov online.</div>
+      <div class="pricing-price">
+        <span class="pricing-from">od</span>
+        <span class="pricing-amount">110</span>
+        <span class="pricing-currency">€</span>
+      </div>
+      <ul class="pricing-features">
+        <li>4–8 podstránok</li>
+        <li>Vlastný dizajn na mieru</li>
+        <li>Animácie a interakcie</li>
+        <li>Pokročilé SEO</li>
+        <li>Integrácia soc. sietí</li>
+      </ul>
+      <a href="#kontakt" class="pricing-cta pricing-cta-solid">Chcem tento plán</a>
+    </div>
+
+    <!-- Premium -->
+    <div class="pricing-card">
+      <div class="pricing-tier">Premium</div>
+      <div class="pricing-name">Komplexný web</div>
+      <div class="pricing-desc">Náročné projekty, e-shopy, portály alebo weby s administráciou.</div>
+      <div class="pricing-price">
+        <span class="pricing-from">od</span>
+        <span class="pricing-amount">150</span>
+        <span class="pricing-currency">€</span>
+      </div>
+      <ul class="pricing-features">
+        <li>Neobmedzený počet stránok</li>
+        <li>CMS / administrácia</li>
+        <li>E-shop funkcionalita</li>
+        <li>Vlastná doména & hosting</li>
+        <li>Podpora po spustení</li>
+      </ul>
+      <a href="#kontakt" class="pricing-cta pricing-cta-ghost">Mám záujem</a>
+    </div>
+  </div>
+
+  <p class="pricing-note">
+    Nie ste si istí, čo potrebujete? <a href="#kontakt" style="color: var(--accent); text-decoration: none; font-weight: 500;">Napíšte nám</a> a spolu to vymyslíme.
+  </p>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <span class="section-label">Kontakt</span>
+      <h2 class="section-title">Porozprávajme sa<br>o vašom projekte.</h2>
+      <p class="section-sub">
+        Máte nápad alebo potrebujete poradiť? Ozvite sa – radi si vypočujeme,
+        čo potrebujete, a navrhneme riešenie na mieru.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:mamutstudio@gmail.com" class="contact-link-item">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" color="#7AAAF0">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">mamutstudio@gmail.com</div>
+          </div>
+        </a>
+
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="contact-link-item">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7AAAF0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="#7AAAF0" stroke="none"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-link-label">Instagram</div>
+            <div class="contact-link-value">@mamutstudio</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:24px;">Napíšte nám správu</h3>
+      <div class="form-group">
+        <label for="name">Vaše meno</label>
+        <input type="text" id="name" placeholder="Ján Novák" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="jan@firma.sk" />
+      </div>
+      <div class="form-group">
+        <label for="message">Správa</label>
+        <textarea id="message" placeholder="Popíšte stručne, čo potrebujete…"></textarea>
+      </div>
+      <button class="form-submit" onclick="sendForm()">Odoslať správu →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="margin-bottom:12px;">
+        <!-- LOGO PLACEHOLDER – nahraďte obrázkom -->
+        <div class="nav-logo-box" style="width:48px;height:48px;font-size:20px;">M</div>
+        <span class="nav-logo-text">Mamut Studio</span>
+      </a>
+      <p class="footer-tagline">Profesionálne weby pre slovenské firmy. Na mieru, bez kompromisov.</p>
+    </div>
+
+    <div>
+      <div style="font-size:12px;color:var(--gray);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Sociálne siete</div>
+      <div class="footer-social">
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="social-link" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://facebook.com" target="_blank" rel="noopener" class="social-link" title="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-link" title="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.04-8.32a8.22 8.22 0 0 0 4.81 1.55V5.1a4.85 4.85 0 0 1-1-.41z"/>
+          </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://youtube.com" target="_blank" rel="noopener" class="social-link" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Mamut Studio. Všetky práva vyhradené.</span>
+    <span class="footer-copy">Vyrobené s ❤️ na Slovensku</span>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Správa odoslaná! Ozveme sa čoskoro.</div>
+
+<script>
+  // Nav toggle
+  function toggleMenu() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Smooth scroll for all anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Form submit simulation
+  function sendForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const msg = document.getElementById('message').value.trim();
+    if (!name || !email || !msg) {
+      alert('Prosím vyplňte všetky polia.');
+      return;
+    }
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('message').value = '';
+  }
+
+  // Scroll-triggered nav shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').style.boxShadow =
+      window.scrollY > 20 ? '0 4px 32px rgba(0,0,0,0.4)' : 'none';
+  });
+</script>
+</body>
+</html>
